@@ -6,19 +6,43 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": false,
 						"internalType": "address",
-						"name": "_counter",
+						"name": "from",
 						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint128",
+						"name": "messageIndex",
+						"type": "uint128"
 					}
 				],
-				"name": "getCount",
-				"outputs": [
+				"name": "MessageStored",
+				"type": "event"
+			},
+			{
+				"inputs": [
 					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					}
+				],
+				"name": "messages",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -27,12 +51,12 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "_counter",
-						"type": "address"
+						"internalType": "string",
+						"name": "message",
+						"type": "string"
 					}
 				],
-				"name": "incrementCounter",
+				"name": "store",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -51,7 +75,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"solidity_by_example_interfaces.sol": "MyContract"
+			"simple_storage/SimpleStorage.sol": "SimpleStorage"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -65,12 +89,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"solidity_by_example_interfaces.sol": {
-			"keccak256": "0x71ace01aedd41627d7110a310a2ba60ca81fb12489fefda558a36b3e21422c30",
+		"simple_storage/SimpleStorage.sol": {
+			"keccak256": "0xa860279a7ee97bb532693ad719558031518fd4bc2e3d663c751fe93c85baee96",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fad84df5052f25c2b4283cea9c3b4da7f9686488c24eac3ebbf2a8f1d045e48e",
-				"dweb:/ipfs/Qmc5RJDSjv1KaX4AK1mounhKjVxPR4RvDdoB7yZqcPAwzY"
+				"bzz-raw://0e564841f60e6f10c00d633bf7b0b2af5b559c0147328104ab291c0f4578a32e",
+				"dweb:/ipfs/QmT47zTLYCGEa8oGLiLJc8iun4u9BKQTrR3ZaJfwjaVgat"
 			]
 		}
 	},
