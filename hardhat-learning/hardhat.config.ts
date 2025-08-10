@@ -1,11 +1,8 @@
-import { task } from "hardhat/config";
-import { HardhatRuntimeEnvironment, HardhatUserConfig } from "hardhat/types";
+import { task, HardhatUserConfig } from "hardhat/config";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { ethers } from "ethers";
 import "@nomicfoundation/hardhat-ethers";
-import "@nomicfoundation/hardhat-chai-matchers";
-import "@typechain/hardhat";
-
-import "./tasks/compile_files";
+import '@typechain/hardhat'
 
 task(
   "accounts",
@@ -58,15 +55,11 @@ task(
   }
 });
 const config: HardhatUserConfig = {
-  solidity: {
-    version: "0.8.26",
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200,
-      },
+  solidity: "0.8.26",
+  typechain: {
+        outDir: "typechain",
+        target: "ethers-v6", // The correct target for Hardhat v2.17+
     },
-  },
 };
 
 export default config;
