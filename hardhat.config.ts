@@ -1,5 +1,5 @@
 import { task } from "hardhat/config";
-import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { HardhatRuntimeEnvironment, HardhatUserConfig } from "hardhat/types";
 import { ethers } from "ethers";
 import "@nomicfoundation/hardhat-ethers";
 

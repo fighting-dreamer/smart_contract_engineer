@@ -10,7 +10,7 @@ describe("SimpleStorage", function () {
 
         const simpleStorageContract = await hre.ethers.getContractFactory("SimpleStorage");
         const simpleStorageDeployed = await simpleStorageContract.deploy();
-        console.log(simpleStorageDeployed.getAddress());
+        console.log(await simpleStorageDeployed.getAddress());
         console.log(simpleStorageDeployed);
         console.log("---------------------------------------------\n")
         return {simpleStorageDeployed, account, otherAccount}
