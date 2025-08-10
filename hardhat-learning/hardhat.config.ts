@@ -3,6 +3,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { ethers } from "ethers";
 import "@nomicfoundation/hardhat-ethers";
 import '@typechain/hardhat'
+import '@nomiclabs/hardhat-solhint'
 
 task(
   "accounts",
