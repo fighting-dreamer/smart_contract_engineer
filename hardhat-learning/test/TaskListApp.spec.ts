@@ -1,16 +1,15 @@
-import { loadFixture } from "@nomicfoundation/hardhat-toolbox/network-helpers";
-import hre, { ethers } from "hardhat";
-import { expect } from "chai";
+import {loadFixture} from '@nomicfoundation/hardhat-toolbox/network-helpers';
+import hre, {ethers} from 'hardhat';
+import {expect} from 'chai';
 
-describe("TaskListApp", function () {
+import {TaskListApp} from '../typechain';
+
+describe('TaskListApp', function () {
   async function deployTaskListAppFixture() {
-    // const taskAppListDeployed = await hre.ethers.deployContract(
-    //   "TaskListApp"
-    // )
-    const taskAppListContract = await ethers.getContractFactory("TaskListApp");
-    const taskAppListDeployed = await taskAppListContract.deploy();
+    const TaskListAppFactory = await hre.ethers.getContractFactory('TaskListApp');
+    
+    const taskAppListDeployed = (await TaskListAppFactory.deploy()) as unknown as TaskListApp;
     await taskAppListDeployed.waitForDeployment();
-
     const [account, otherAccount] = await hre.ethers.getSigners();
 
     return {
@@ -20,15 +19,15 @@ describe("TaskListApp", function () {
     };
   }
 
-  it("should have zero tasks initially", async function () {
-    const { taskAppListDeployed } = await loadFixture(deployTaskListAppFixture);
+  it('should have zero tasks initially', async function () {
+    const {taskAppListDeployed} = await loadFixture(deployTaskListAppFixture);
     const tasks = await taskAppListDeployed.getTasks();
     expect(tasks.length).to.equal(0);
   });
 
-  it("should store a new task and have a length of one", async function () {
-    const { taskAppListDeployed } = await loadFixture(deployTaskListAppFixture);
-    const taskMessage = "qwerty";
+  it('should store a new task and have a length of one', async function () {
+    const {taskAppListDeployed} = await loadFixture(deployTaskListAppFixture);
+    const taskMessage = 'qwerty';
     const txn = await taskAppListDeployed.addTask(taskMessage);
     await txn.wait();
 
