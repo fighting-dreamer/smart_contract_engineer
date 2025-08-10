@@ -12,4 +12,8 @@ contract SimpleStorage {
         messages.push(message);
         emit MessageStored(msg.sender, uint128(messages.length));
     }
+
+    function getMessage(uint _index) public view returns (string memory) {
+        return messages[_index];
+    }
 }
