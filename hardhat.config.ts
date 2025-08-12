@@ -2,7 +2,7 @@ import { task } from "hardhat/config";
 import { HardhatRuntimeEnvironment, HardhatUserConfig } from "hardhat/types";
 import { ethers } from "ethers";
 import "@nomicfoundation/hardhat-ethers";
-
+import "@nomicfoundation/hardhat-chai-matchers"
 
 task("accounts", "Prints the list of accounts and their private keys")
   .setAction(async (taskArgs: any, hre: HardhatRuntimeEnvironment) => {

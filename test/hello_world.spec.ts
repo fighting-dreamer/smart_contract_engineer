@@ -45,10 +45,27 @@ describe("HelloWorld", function () {
 
   it("updating greeting", async function () {
     const { deployedContract } = await loadFixture(deployHelloWorldFixture);
-    const greet = await deployedContract.greet();
     const TESING_UPDATE_GREETING = "Testing Update Greeting";
     await deployedContract.updateGreet(TESING_UPDATE_GREETING);
     const updatedGreet = await deployedContract.greet();
     expect(updatedGreet).is.equal(TESING_UPDATE_GREETING);
+  });
+
+  it("emits event", async function () {
+    const { deployedContract, account, otherAccount } = await loadFixture(
+      deployHelloWorldFixture
+    );
+    const TESING_UPDATE_GREETING = "Testing Update Greeting";
+    const testEventName = "UpdatedGreetingMessage";
+
+    await expect(deployedContract.updateGreet(TESING_UPDATE_GREETING))
+      .to.emit(deployedContract, testEventName)
+      .withArgs(account.address, TESING_UPDATE_GREETING);
+
+    await expect(
+      deployedContract.connect(otherAccount).updateGreet(TESTING_GREETING)
+    )
+      .to.emit(deployedContract, testEventName)
+      .withArgs(otherAccount, TESTING_GREETING);
   });
 });
