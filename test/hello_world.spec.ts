@@ -69,12 +69,39 @@ describe("HelloWorld", function () {
       .withArgs(otherAccount, TESTING_GREETING);
   });
 
-  it("updateGreet with revert", async function() {
-    const {deployedContract, account, otherAccount} = await loadFixture(deployHelloWorldFixture);
+  it("updateGreet with revert", async function () {
+    const { deployedContract, account, otherAccount } = await loadFixture(
+      deployHelloWorldFixture
+    );
 
     const TESING_UPDATE_GREETING = "Testing update greeting";
-    await expect(deployedContract.updateGreetWithRevert(TESING_UPDATE_GREETING)).to.not.reverted;
+    await expect(deployedContract.updateGreetWithRevert(TESING_UPDATE_GREETING))
+      .to.not.reverted;
 
-    await expect(deployedContract.connect(otherAccount).updateGreetWithRevert(TESING_UPDATE_GREETING)).to.be.revertedWith("Only the owner can call this function.")
-  })
+    await expect(
+      deployedContract
+        .connect(otherAccount)
+        .updateGreetWithRevert(TESING_UPDATE_GREETING)
+    ).to.be.revertedWith("Only the owner can call this function.");
+  });
+
+  it("updateGreet with require", async function () {
+    const { deployedContract, account, otherAccount } = await loadFixture(
+      deployHelloWorldFixture
+    );
+
+    const TESING_UPDATE_GREETING = "Testing update greeting";
+
+    await expect(
+      deployedContract.updateGreetWithRequire(TESING_UPDATE_GREETING)
+    ).to.not.be.reverted;
+    
+    expect(await deployedContract.greet()).to.be.equal(TESING_UPDATE_GREETING);
+
+    await expect(
+      deployedContract
+        .connect(otherAccount)
+        .updateGreetWithRequire(TESING_UPDATE_GREETING)
+    ).to.be.revertedWith("Only the owner can call this function");
+  });
 });
