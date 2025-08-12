@@ -68,4 +68,13 @@ describe("HelloWorld", function () {
       .to.emit(deployedContract, testEventName)
       .withArgs(otherAccount, TESTING_GREETING);
   });
+
+  it("updateGreet with revert", async function() {
+    const {deployedContract, account, otherAccount} = await loadFixture(deployHelloWorldFixture);
+
+    const TESING_UPDATE_GREETING = "Testing update greeting";
+    await expect(deployedContract.updateGreetWithRevert(TESING_UPDATE_GREETING)).to.not.reverted;
+
+    await expect(deployedContract.connect(otherAccount).updateGreetWithRevert(TESING_UPDATE_GREETING)).to.be.revertedWith("Only the owner can call this function.")
+  })
 });
