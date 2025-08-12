@@ -95,7 +95,7 @@ describe("HelloWorld", function () {
     await expect(
       deployedContract.updateGreetWithRequire(TESING_UPDATE_GREETING)
     ).to.not.be.reverted;
-    
+
     expect(await deployedContract.greet()).to.be.equal(TESING_UPDATE_GREETING);
 
     await expect(
@@ -103,5 +103,40 @@ describe("HelloWorld", function () {
         .connect(otherAccount)
         .updateGreetWithRequire(TESING_UPDATE_GREETING)
     ).to.be.revertedWith("Only the owner can call this function");
+  });
+
+  describe("verify balance", async function () {
+    it("zero balace and balance after txn check", async function () {
+      const { deployedContract, account, otherAccount } = await loadFixture(
+        deployHelloWorldFixture
+      );
+      // currently no transfer or fallback method implemented in the contract.
+      // in beginning no ether were given to contract
+      const contractAddress = deployedContract.target;
+      await expect(
+        await hre.ethers.provider.getBalance(contractAddress)
+      ).to.be.equal(0);
+    });
+
+    // This test fails as there is no recieve or fallback with payable method.
+    it.skip("sending ether and checking balance", async function () {
+      const { deployedContract, account, otherAccount } = await loadFixture(
+        deployHelloWorldFixture
+      );
+      // currently no transfer or fallback method implemented in the contract.
+      // in beginning no ether were given to contract
+      const contractAddress = deployedContract.target;
+      // sending 1 eth to contract address
+      const accountEthBalance = await hre.ethers.provider.getBalance(
+        account.address
+      );
+      const txn = await account.sendTransaction({
+        to: contractAddress,
+        value: hre.ethers.parseEther("1"),
+      });
+
+      await txn.wait();
+      console.log(txn);
+    });
   });
 });
