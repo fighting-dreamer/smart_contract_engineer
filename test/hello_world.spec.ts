@@ -159,5 +159,28 @@ describe("HelloWorld", function () {
         ownerBalanceBefore - amountToSend - txCost
       );
     });
+
+    it("should update Greet, transfer Ether, and emit events correctly", async function () {
+      const { deployedContract, account } = await loadFixture(
+        deployHelloWorldFixture
+      );
+
+      const amountToSend = hre.ethers.parseEther("1");
+      const TESTING_UPDATE_GREETING = "testing update greeting";
+      const txnPromise = deployedContract.transferAndUpdateGreet(
+        TESTING_UPDATE_GREETING,
+        {
+          value: amountToSend,
+        }
+      );
+      await expect(txnPromise)
+        .to.emit(deployedContract, "UpdatedGreetingMessage")
+        .withArgs(account.address, TESTING_UPDATE_GREETING);
+      await expect(txnPromise).to.not.emit(deployedContract, "Transfer");
+      await expect(txnPromise).to.changeEtherBalances(
+        [deployedContract, account],
+        [amountToSend, -amountToSend]
+      );
+    });
   });
 });

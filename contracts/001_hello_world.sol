@@ -42,4 +42,8 @@ contract HelloWorld {
     function updateGreetWithRequire(string memory _greet) onlyOwnerWithRequire() public {
         updateGreet(_greet);
     }
+
+    function transferAndUpdateGreet(string memory _greet) payable public {
+        updateGreet(_greet);
+    }
 }
