@@ -4,6 +4,7 @@ pragma solidity 0.8.26;
 
 contract HelloWorld {
     event UpdatedGreetingMessage(address indexed sender, string message);
+    event Transfer(address indexed from, address indexed to, uint256 value);
 
     string public greet = "Hello World";
     address private owner;
@@ -23,6 +24,10 @@ contract HelloWorld {
     modifier onlyOwnerWithRequire() {
         require(msg.sender == owner, "Only the owner can call this function");
         _;
+    }
+
+    receive() external payable {
+        emit Transfer(msg.sender, address(this), msg.value);
     }
 
     function updateGreet(string memory _greet) public {

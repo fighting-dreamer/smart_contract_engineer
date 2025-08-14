@@ -118,25 +118,46 @@ describe("HelloWorld", function () {
       ).to.be.equal(0);
     });
 
-    // This test fails as there is no recieve or fallback with payable method.
-    it.skip("sending ether and checking balance", async function () {
-      const { deployedContract, account, otherAccount } = await loadFixture(
+    it("should receive ether, emit a Transfer event, and update balances correctly", async function () {
+      const { deployedContract, account } = await loadFixture(
         deployHelloWorldFixture
       );
-      // currently no transfer or fallback method implemented in the contract.
-      // in beginning no ether were given to contract
       const contractAddress = deployedContract.target;
+      const amountToSend = hre.ethers.parseEther("1");
+
       // sending 1 eth to contract address
-      const accountEthBalance = await hre.ethers.provider.getBalance(
+      const ownerBalanceBefore = await hre.ethers.provider.getBalance(
         account.address
       );
-      const txn = await account.sendTransaction({
+
+      const txPromise = account.sendTransaction({
         to: contractAddress,
-        value: hre.ethers.parseEther("1"),
+        value: amountToSend,
       });
 
-      await txn.wait();
-      console.log(txn);
+      // Assert that the transaction emits the 'Transfer' event with the correct arguments
+      await expect(txPromise)
+        .to.emit(deployedContract, "Transfer")
+        .withArgs(account.address, contractAddress, amountToSend);
+
+      // Wait for the transaction to be mined to get the receipt for gas calculation
+      const txResponse = await txPromise;
+      const receipt = await txResponse.wait();
+      expect(receipt).to.not.be.null;
+
+      // Calculate the transaction cost
+      const txCost = receipt!.gasUsed * receipt!.gasPrice;
+
+      const contractEthBalance = await hre.ethers.provider.getBalance(
+        contractAddress
+      );
+      expect(contractEthBalance).to.be.equal(amountToSend);
+      const ownerBalanceAfter = await hre.ethers.provider.getBalance(
+        account.address
+      );
+      expect(ownerBalanceAfter).to.be.equal(
+        ownerBalanceBefore - amountToSend - txCost
+      );
     });
   });
 });
