@@ -218,4 +218,22 @@ contract Operations {
         printGivenArray(cpyArray3);
         console.log("effect of original array change happens on the copied array");
     }
+
+
+    // ------------------------------------------- //
+
+    // Mapping related functions
+    // adding element : done
+    // getting value for a key : done
+    // removing element for a key : done
+    // listing KV : not directly possible.
+    function removeKV(uint256 _key) public {
+        delete myMapping[_key];
+    }
+
+    function getMappingValue(uint256 _key)  public view returns (uint256) {
+        return myMapping[_key];
+    }
+    
+
 }
