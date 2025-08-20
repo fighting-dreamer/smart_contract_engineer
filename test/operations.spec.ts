@@ -32,8 +32,19 @@ describe("Operations", function () {
     await deployedContract.print();
   });
 
-  it("check conditionals", async function() {
-    const {deployedContract} = await loadFixture(deployOperationsFixture);
+  it("check conditionals", async function () {
+    const { deployedContract } = await loadFixture(deployOperationsFixture);
     await deployedContract.checkConditionals();
-  })
+  });
+
+  it("check loops", async function () {
+    const { deployedContract } = await loadFixture(deployOperationsFixture);
+    const [sum, isEqual] = await deployedContract.checkLoops(10);
+    console.log(sum, isEqual);
+  });
+
+  it("check array operations", async function () {
+    const { deployedContract } = await loadFixture(deployOperationsFixture);
+    await deployedContract.checkArrayOperations(10);
+  });
 });
