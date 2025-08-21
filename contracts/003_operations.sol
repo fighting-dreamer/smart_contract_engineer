@@ -10,7 +10,6 @@ contract Operations {
     // loops
     // array operations
     // mapping operations
-    // enum poerations
 
     uint256 public myNumber = 123;
     address public myAddress = msg.sender;
