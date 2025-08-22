@@ -23,4 +23,11 @@ contract TestLearningEnums is LearnEnums {
         removeOrderState(orderStates, _index);
         return orderStates;
     }
+
+    function testAreSameNextStates(
+        OrderState[] memory currNextStates,
+        OrderState[] memory nextStates
+    ) public pure returns (bool) {
+        return areSameNextStates(currNextStates, nextStates);
+    }
 }

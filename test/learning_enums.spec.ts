@@ -161,4 +161,72 @@ describe("Test Learning Enums", async function () {
       expect(gotOrderStates).to.be.deep.equal(expectedOrderStates);
     });
   });
+
+  describe("Testing AreSameStates", async function () {
+    it("Have same arrays to compare", async function () {
+      const { deployedContract_TestLearningEnums } = await loadFixture(
+        deployContractFixture
+      );
+      const orderStates1 = [
+        OrderState.PLACED,
+        OrderState.DELIVERED,
+        OrderState.PREPARED,
+      ];
+      const orderStates2 = orderStates1;
+
+      const gotRes =
+        await deployedContract_TestLearningEnums.testAreSameNextStates(
+          orderStates1,
+          orderStates2
+        );
+      expect(gotRes).to.equal(true);
+    });
+    describe("Have different arrays to compare", async function () {
+      it("when length is different", async function () {
+        const { deployedContract_TestLearningEnums } = await loadFixture(
+          deployContractFixture
+        );
+        const orderStates1 = [
+          OrderState.PLACED,
+          OrderState.DELIVERED,
+          OrderState.PREPARED,
+        ];
+        const orderStates2 = [...orderStates1];
+        orderStates2.push(OrderState.ASSIGNED);
+        console.log(orderStates1);
+        console.log(orderStates2);
+
+        const gotRes =
+          await deployedContract_TestLearningEnums.testAreSameNextStates(
+            orderStates1,
+            orderStates2
+          );
+        expect(gotRes).to.equal(false);
+      });
+      it("when length is same, but hav different entries", async function () {
+        const { deployedContract_TestLearningEnums } = await loadFixture(
+          deployContractFixture
+        );
+        const orderStates1 = [
+          OrderState.PLACED,
+          OrderState.DELIVERED,
+          OrderState.PREPARED,
+        ];
+        const orderStates2 = [
+          OrderState.PLACED,
+          OrderState.DELIVERED,
+          OrderState.ASSIGNED,
+        ];
+        console.log(orderStates1);
+        console.log(orderStates2);
+
+        const gotRes =
+          await deployedContract_TestLearningEnums.testAreSameNextStates(
+            orderStates1,
+            orderStates2
+          );
+        expect(gotRes).to.equal(false);
+      });
+    });
+  });
 });
