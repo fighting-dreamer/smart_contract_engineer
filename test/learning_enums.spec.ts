@@ -52,7 +52,7 @@ describe("Test Learning Enums", async function () {
     };
   }
 
-  describe("Testing pure functions", async function () {
+  describe("Testing pure functions: computeArrayHash", async function () {
     it("should compute the correct hash for a sorted array", async function () {
       const { deployedContract_TestLearningEnums } = await loadFixture(
         deployContractFixture
@@ -94,6 +94,71 @@ describe("Test Learning Enums", async function () {
         );
 
       expect(actualHash).to.equal(expectedHash);
+    });
+  });
+  describe("Testing pure functions : containsOrderState", async function () {
+    it("when state exist in the array", async function () {
+      const { deployedContract_TestLearningEnums } = await loadFixture(
+        deployContractFixture
+      );
+      const orderStateArr = [OrderState.ON_THE_WAY, OrderState.DELIVERED];
+      const testState = OrderState.DELIVERED;
+      let [index, ok] =
+        await deployedContract_TestLearningEnums.testContainsOrderState(
+          orderStateArr,
+          testState
+        );
+      expect(ok).to.equal(true);
+      expect(index).to.equal(1);
+    });
+
+    it("when state does not exist in the array", async function () {
+      const { deployedContract_TestLearningEnums } = await loadFixture(
+        deployContractFixture
+      );
+      const orderStateArr = [OrderState.ON_THE_WAY, OrderState.DELIVERED];
+      const testState = OrderState.ASSIGNED;
+      let [index, ok] =
+        await deployedContract_TestLearningEnums.testContainsOrderState(
+          orderStateArr,
+          testState
+        );
+      expect(ok).to.equal(false);
+      expect(index).to.equal(0);
+    });
+  });
+
+  describe("Testing order state removal", async function () {
+    it("check if required state is removed", async function () {
+      const { deployedContract_TestLearningEnums } = await loadFixture(
+        deployContractFixture
+      );
+
+      const orderStates = [
+        OrderState.PLACED,
+        OrderState.DELIVERED,
+        OrderState.PREPARED,
+      ];
+      console.log("Order States : ", orderStates);
+      const toBeRemovedState = OrderState.DELIVERED;
+      const indexOfToBeRemovedState = orderStates.findIndex(
+        (state) => state === toBeRemovedState
+      );
+      console.log("TO BE REMOVED INDEX : ", indexOfToBeRemovedState);
+
+      const expectedOrderStates = orderStates.filter(
+        (state) => state !== toBeRemovedState
+      );
+      console.log("Expected Order State : ", expectedOrderStates);
+      const txn = await deployedContract_TestLearningEnums.testRemoveOrderState(
+        orderStates,
+        indexOfToBeRemovedState
+      );
+      const txnReciept = await txn.wait();
+      const gotOrderStates =
+        await deployedContract_TestLearningEnums.debugGetOrderStates();
+      console.log("Got Order States : ", gotOrderStates);
+      expect(gotOrderStates).to.be.deep.equal(expectedOrderStates);
     });
   });
 });

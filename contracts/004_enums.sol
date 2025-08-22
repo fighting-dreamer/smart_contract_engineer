@@ -2,6 +2,8 @@
 
 pragma solidity ^0.8.26;
 
+import "hardhat/console.sol";
+
 contract LearnEnums {
     // Enums are a way to create user-defined types that can represent a finite set of constant values.
     // They are useful for state machines, tracking statuses, etc.
@@ -21,6 +23,10 @@ contract LearnEnums {
     // mapping(address => uint256) public orderNumMap;
     // mapping(address => mapping(uint256 => OrderState)) public userOrderMap;
     // mapping(uint256 => string) orderDetails;
+    // TODO: this orderStates is not ot be used 
+    // but it s here coz i have operations i want to run on mapping stateTransitionMap
+    // how ot make it not usable or available or basically secure ?
+    OrderState[] internal orderStates; 
     mapping(OrderState => OrderState[]) public stateTransitionMap;
 
     event OrderStateChanged(
@@ -46,6 +52,10 @@ contract LearnEnums {
             OrderState.REFUNDED,
             OrderState.TERMINATED
         ];
+    }
+
+    function debugGetOrderStates() external view returns (OrderState[] memory) {
+        return orderStates;
     }
 
     function computeArrayHash(
@@ -76,19 +86,21 @@ contract LearnEnums {
         return (0, false);
     }
 
-    function removeOrderState(
-        OrderState[] storage orderStates,
-        uint256 index
-    ) internal {
-        require(index < orderStates.length, "Invalid index");
-        orderStates[index] = orderStates[orderStates.length - 1];
-        orderStates.pop();
+    function printArray(OrderState[] memory _orderStates) internal pure{
+        for (uint i = 0; i < _orderStates.length; i++) {
+            console.log(uint256(_orderStates[i]));
+        }
+        console.log("\n");
     }
 
-    function getNextStatesTransitionMapping(
-        OrderState currState
-    ) internal view returns (OrderState[] memory) {
-        return stateTransitionMap[currState];
+    function removeOrderState(
+        OrderState[] storage _orderStates,
+        uint256 index
+    ) internal {
+        
+        require(index < _orderStates.length, "Invalid index");
+        _orderStates[index] = _orderStates[_orderStates.length - 1];
+        _orderStates.pop();
     }
 
     function areSameNextStates(
