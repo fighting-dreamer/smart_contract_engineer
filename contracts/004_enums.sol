@@ -61,14 +61,20 @@ contract LearnEnums {
     function computeArrayHash(
         OrderState[] memory arr
     ) internal pure returns (bytes32) {
-        uint enumCount = uint(type(OrderState).max) + 1; // count the number of enums ofr a given enum type.
+        uint256 enumCount = uint256(type(OrderState).max) + 1; // count the number of enums for a given enum type.
+        bool[] memory seen = new bool[](enumCount);
+
+        for (uint256 i = 0; i < arr.length; i++) {
+            uint8 val = uint8(arr[i]);
+            if (val < enumCount) {
+                seen[val] = true;
+            }
+        }
+
         bytes memory arrAbiEncode = "";
-        for (uint i = 0; i < enumCount; i++) {
-            for (uint j = 0; j < arr.length; j++) {
-                if (arr[j] == OrderState(i)) {
-                    arrAbiEncode = abi.encodePacked(arrAbiEncode, arr[j]);
-                    break;
-                }
+        for (uint256 i = 0; i < enumCount; i++) {
+            if (seen[i]) {
+                arrAbiEncode = abi.encodePacked(arrAbiEncode, OrderState(i));
             }
         }
         return keccak256(arrAbiEncode);
@@ -119,6 +125,7 @@ contract LearnEnums {
         OrderState[] calldata nextStates
     ) external {
         // if the nextStates are alredy added => if their length and hashes are same => do nothing
+        // if the nextStates are already added => if their length and hashes are same => do nothing
         if (!areSameNextStates(stateTransitionMap[currState], nextStates)) {
             stateTransitionMap[currState] = nextStates;
         }
@@ -148,5 +155,9 @@ contract LearnEnums {
         if (ok) {
             removeOrderState(stateTransitionMap[currState], index);
         }
+    }
+
+    function getStateTransitionMap(OrderState state) external view returns (OrderState[] memory) {
+        return stateTransitionMap[state];
     }
 }

@@ -1,6 +1,7 @@
 import hre from "hardhat";
 import { expect } from "chai";
 import { loadFixture } from "@nomicfoundation/hardhat-toolbox/network-helpers";
+import { nextTick } from "process";
 
 // Using an object for enums in tests improves readability
 const OrderState = {
@@ -226,6 +227,55 @@ describe("Test Learning Enums", async function () {
             orderStates2
           );
         expect(gotRes).to.equal(false);
+      });
+    });
+
+    describe("testing updateStateTransitionMapping", async function() {
+      it("should not change state if the next states are the same", async function() {
+        const { deployedContract_LearnEnums } = await loadFixture(deployContractFixture);
+        const currentState = OrderState.PREPARED;
+        const existingNextStates = await deployedContract_LearnEnums.getStateTransitionMap(currentState);
+        console.log("should not change state if the next states are the same", existingNextStates);
+
+        // The transaction should not revert and state should remain unchanged.
+        await expect(
+          deployedContract_LearnEnums.updateStateTransitionMapping(
+            currentState,
+            existingNextStates
+          )
+        ).to.not.be.reverted;
+
+        const newNextStates = await deployedContract_LearnEnums.getStateTransitionMap(currentState);
+        console.log("should not change state if the next states are the same", newNextStates);
+        expect(newNextStates).to.equal(existingNextStates);
+      });
+
+      it("should update when next order states are different", async function() {
+        const { deployedContract_LearnEnums } = await loadFixture(deployContractFixture);
+        const currentState = OrderState.PREPARED;
+        const newNextStates = [
+          OrderState.ASSIGNED,
+          OrderState.CANCELLED,
+          OrderState.DELIVERED,
+        ];
+
+        await deployedContract_LearnEnums.updateStateTransitionMapping(currentState, newNextStates);
+
+        const updatedNextStates = await deployedContract_LearnEnums.getStateTransitionMap(currentState);
+        // The getter doesn't guarantee order, so we should compare them as sets.
+        expect(updatedNextStates.map((x) => x.toString())).to.have.deep.members(newNextStates.map((x) => x.toString()));
+        expect(updatedNextStates.length).to.equal(newNextStates.length);
+      });
+
+      it("should set next order states when none are set", async function () {
+        const { deployedContract_LearnEnums } = await loadFixture(deployContractFixture);
+        const currentState = OrderState.DELIVERED; // This one has no transitions in constructor
+        const newNextStates = [OrderState.REFUNDED];
+
+        await deployedContract_LearnEnums.updateStateTransitionMapping(currentState, newNextStates);
+
+        const updatedNextStates = await deployedContract_LearnEnums.getStateTransitionMap(currentState);
+        expect(updatedNextStates.map(Number)).to.deep.equal(newNextStates);
       });
     });
   });
