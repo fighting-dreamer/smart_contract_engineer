@@ -234,20 +234,18 @@ describe("Test Learning Enums", async function () {
       it("should not change state if the next states are the same", async function() {
         const { deployedContract_LearnEnums } = await loadFixture(deployContractFixture);
         const currentState = OrderState.PREPARED;
-        const existingNextStates = await deployedContract_LearnEnums.getStateTransitionMap(currentState);
-        console.log("should not change state if the next states are the same", existingNextStates);
+        const existingNextStatesResult = await deployedContract_LearnEnums.getStateTransitionMap(currentState);
 
         // The transaction should not revert and state should remain unchanged.
         await expect(
           deployedContract_LearnEnums.updateStateTransitionMapping(
             currentState,
-            existingNextStates
+            [...existingNextStatesResult] // Pass a mutable copy to avoid read-only error
           )
         ).to.not.be.reverted;
 
-        const newNextStates = await deployedContract_LearnEnums.getStateTransitionMap(currentState);
-        console.log("should not change state if the next states are the same", newNextStates);
-        expect(newNextStates).to.equal(existingNextStates);
+        const newNextStatesResult = await deployedContract_LearnEnums.getStateTransitionMap(currentState);
+        expect(newNextStatesResult).to.deep.equal(existingNextStatesResult);
       });
 
       it("should update when next order states are different", async function() {
