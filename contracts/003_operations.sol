@@ -234,5 +234,9 @@ contract Operations {
         return myMapping[_key];
     }
     
+    function getMyArray() public view returns (uint256[] memory) {
+        return myArray;
+    }
+    
 
 }

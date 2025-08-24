@@ -26,7 +26,7 @@ contract LearnEnums {
     // TODO: this orderStates is not ot be used 
     // but it s here coz i have operations i want to run on mapping stateTransitionMap
     // how ot make it not usable or available or basically secure ?
-    OrderState[] internal orderStates; 
+    OrderState[] internal orderStates;
     mapping(OrderState => OrderState[]) public stateTransitionMap;
 
     event OrderStateChanged(
@@ -35,7 +35,7 @@ contract LearnEnums {
         OrderState newState
     );
 
-    constructor() {
+    constructor() {        
         stateTransitionMap[OrderState.PLACED] = [OrderState.CONFIRMED];
         stateTransitionMap[OrderState.CONFIRMED] = [
             OrderState.ASSIGNED,

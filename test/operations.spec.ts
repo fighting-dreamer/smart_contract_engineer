@@ -44,6 +44,23 @@ describe("Operations", function () {
     console.log(sum, isEqual);
   });
 
+  it("get array directly", async function() {
+    const {deployedContract} = await loadFixture(deployOperationsFixture);
+    await deployedContract.addToArray(10);
+    await deployedContract.addToArray(20);
+    await deployedContract.addToArray(30);
+    await deployedContract.addToArray(40);
+    await deployedContract.addToArray(50);
+    // Calling the public getter with an index returns the element at that index.
+    const firstElement = await deployedContract.myArray(0);
+    expect(firstElement).to.equal(10n);
+
+    // Calling our new custom getter returns the whole array.
+    const fullArray = await deployedContract.getMyArray();
+    const expectedArray = [10, 20, 10, 20, 30, 40, 50];
+    expect(fullArray.map(Number)).to.deep.equal(expectedArray);
+  })
+
   it("check array operations", async function () {
     const { deployedContract } = await loadFixture(deployOperationsFixture);
     await deployedContract.checkArrayOperations(10);
