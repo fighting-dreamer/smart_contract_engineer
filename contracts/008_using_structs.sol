@@ -22,14 +22,14 @@ contract OrderAccounting {
 
     struct FoodOrder {
         uint256 orderNum;
-        Item[] itemList;
+        Item[] itemList; // UnimplementedFeatureError: Copying of type struct OrderAccounting.Item memory[] memory to storage not yet supported.
         uint256 userId;
         uint256 resturantId;
     }
 
     mapping(uint256 => mapping(uint256 => FoodOrder)) public userFoodOrderMap; // userID => FoodOrder[], using order-num, get the food-order
     mapping(uint256 => uint256) public userLastOrderNumMap; // user to last order's number;
-    mapping(uint256 => mapping(uint256 => OrderStatus)) orderStatusMap;
+    mapping(uint256 => mapping(uint256 => OrderStatus)) public orderStatusMap;
     constructor() payable {}
 
     receive() external payable {}
@@ -66,7 +66,7 @@ contract OrderAccounting {
         // get Item Prices
         uint256 billAmt = 0;
         for (uint i = 0; i < _foodOrder.itemList.length; i++) {
-            uint256 price = getItemPrice(
+            uint256 price = _getItemPrice(
                 _foodOrder.resturantId,
                 _foodOrder.itemList[i].itemId
             );
@@ -94,15 +94,33 @@ contract OrderAccounting {
         ) = _processNewFoodOrder(orderNum, _foodOrder);
 
         require(msg.value > billAmt, "user is short on bill");
-        userFoodOrderMap[_userId][orderNum] = processedFoodOrder;
+        // userFoodOrderMap[_userId][orderNum] = processedFoodOrder; // Does not work
+        // Assign to storage struct member by member
+        userFoodOrderMap[_userId][orderNum].orderNum = processedFoodOrder
+            .orderNum;
+        userFoodOrderMap[_userId][orderNum].userId = processedFoodOrder.userId;
+        userFoodOrderMap[_userId][orderNum].resturantId = processedFoodOrder
+            .resturantId;
+
+        // To copy the dynamic array, you must create it in storage and then copy each element
+        FoodOrder storage newOrder = userFoodOrderMap[_userId][orderNum];
+        newOrder.itemList.push(); // First push a placeholder
+        newOrder.itemList.pop(); // then remove it, this resizes the array
+        for (uint i = 0; i < processedFoodOrder.itemList.length; i++) {
+            newOrder.itemList.push(processedFoodOrder.itemList[i]);
+        }
 
         uint256 remainingAmount = msg.value - billAmt;
         // send back remaining amount. // TODO : make it pull based
         bool sent = payable(msg.sender).send(remainingAmount);
         require(sent, "Failed to send back remaining amount");
+        return newOrder;
     }
 
-    function getUserOrderInfo(uint256 _userId, uint256 _orderNum) public view returns(FoodOrder memory) {
+    function getUserOrderInfo(
+        uint256 _userId,
+        uint256 _orderNum
+    ) public view returns (FoodOrder memory) {
         return userFoodOrderMap[_userId][_orderNum];
     }
 }
