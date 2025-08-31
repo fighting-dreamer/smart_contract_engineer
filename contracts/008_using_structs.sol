@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+import "hardhat/console.sol";
 
 // Using structs;
 contract OrderAccounting {
@@ -78,6 +79,7 @@ contract OrderAccounting {
 
         return (billAmt, _foodOrder);
     }
+    
     // CRUD
     function addNewOrder(
         uint256 _userId,
@@ -104,8 +106,8 @@ contract OrderAccounting {
 
         // To copy the dynamic array, you must create it in storage and then copy each element
         FoodOrder storage newOrder = userFoodOrderMap[_userId][orderNum];
-        newOrder.itemList.push(); // First push a placeholder // empty placeholder push.
-        newOrder.itemList.pop(); // then remove it, this resizes the array
+        // newOrder.itemList.push(); // First push a placeholder // empty placeholder push.
+        // newOrder.itemList.pop(); // then remove it, this resizes the array
         for (uint i = 0; i < processedFoodOrder.itemList.length; i++) {
             newOrder.itemList.push(processedFoodOrder.itemList[i]);
         }
@@ -114,6 +116,11 @@ contract OrderAccounting {
         // send back remaining amount. // TODO : make it pull based
         bool sent = payable(msg.sender).send(remainingAmount);
         require(sent, "Failed to send back remaining amount");
+        console.log(newOrder.itemList.length);
+        console.log(userFoodOrderMap[_userId][orderNum].itemList.length);
+        console.log("Order Num , ", userFoodOrderMap[_userId][orderNum].orderNum);
+                console.log("User ID , ", userFoodOrderMap[_userId][orderNum].userId);
+
         return newOrder;
     }
 
