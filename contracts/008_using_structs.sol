@@ -104,7 +104,7 @@ contract OrderAccounting {
 
         // To copy the dynamic array, you must create it in storage and then copy each element
         FoodOrder storage newOrder = userFoodOrderMap[_userId][orderNum];
-        newOrder.itemList.push(); // First push a placeholder
+        newOrder.itemList.push(); // First push a placeholder // empty placeholder push.
         newOrder.itemList.pop(); // then remove it, this resizes the array
         for (uint i = 0; i < processedFoodOrder.itemList.length; i++) {
             newOrder.itemList.push(processedFoodOrder.itemList[i]);
