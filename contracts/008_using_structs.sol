@@ -80,6 +80,17 @@ contract OrderAccounting {
         return (billAmt, _foodOrder);
     }
     
+    function copyFoodOrderFromMemtoStorage(FoodOrder memory _fo, FoodOrder storage newOrder) internal returns(FoodOrder storage) {
+        newOrder.orderNum = _fo.orderNum;
+        newOrder.resturantId = _fo.resturantId;
+        newOrder.userId = _fo.userId;
+        for(uint i = 0; i < _fo.itemList.length; i++) {
+            newOrder.itemList.push(_fo.itemList[i]);
+        }
+
+        return newOrder;
+    }
+
     // CRUD
     function addNewOrder(
         uint256 _userId,
@@ -96,22 +107,8 @@ contract OrderAccounting {
         ) = _processNewFoodOrder(orderNum, _foodOrder);
 
         require(msg.value > billAmt, "user is short on bill");
-        // userFoodOrderMap[_userId][orderNum] = processedFoodOrder; // Does not work
-        // Assign to storage struct member by member
-        userFoodOrderMap[_userId][orderNum].orderNum = processedFoodOrder
-            .orderNum;
-        userFoodOrderMap[_userId][orderNum].userId = processedFoodOrder.userId;
-        userFoodOrderMap[_userId][orderNum].resturantId = processedFoodOrder
-            .resturantId;
-
-        // To copy the dynamic array, you must create it in storage and then copy each element
-        FoodOrder storage newOrder = userFoodOrderMap[_userId][orderNum];
-        // newOrder.itemList.push(); // First push a placeholder // empty placeholder push.
-        // newOrder.itemList.pop(); // then remove it, this resizes the array
-        for (uint i = 0; i < processedFoodOrder.itemList.length; i++) {
-            newOrder.itemList.push(processedFoodOrder.itemList[i]);
-        }
-
+        FoodOrder storage newOrder = copyFoodOrderFromMemtoStorage(processedFoodOrder, userFoodOrderMap[_userId][orderNum]);
+        
         uint256 remainingAmount = msg.value - billAmt;
         // send back remaining amount. // TODO : make it pull based
         bool sent = payable(msg.sender).send(remainingAmount);
