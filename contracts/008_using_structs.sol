@@ -79,12 +79,15 @@ contract OrderAccounting {
 
         return (billAmt, _foodOrder);
     }
-    
-    function copyFoodOrderFromMemtoStorage(FoodOrder memory _fo, FoodOrder storage newOrder) internal returns(FoodOrder storage) {
+
+    function copyFoodOrderFromMemtoStorage(
+        FoodOrder memory _fo,
+        FoodOrder storage newOrder
+    ) internal returns (FoodOrder storage) {
         newOrder.orderNum = _fo.orderNum;
         newOrder.resturantId = _fo.resturantId;
         newOrder.userId = _fo.userId;
-        for(uint i = 0; i < _fo.itemList.length; i++) {
+        for (uint i = 0; i < _fo.itemList.length; i++) {
             newOrder.itemList.push(_fo.itemList[i]);
         }
 
@@ -107,18 +110,24 @@ contract OrderAccounting {
         ) = _processNewFoodOrder(orderNum, _foodOrder);
 
         require(msg.value > billAmt, "user is short on bill");
-        FoodOrder storage newOrder = copyFoodOrderFromMemtoStorage(processedFoodOrder, userFoodOrderMap[_userId][orderNum]);
-        
+        copyFoodOrderFromMemtoStorage(
+            processedFoodOrder,
+            userFoodOrderMap[_userId][orderNum]
+        );
+
         uint256 remainingAmount = msg.value - billAmt;
         // send back remaining amount. // TODO : make it pull based
         bool sent = payable(msg.sender).send(remainingAmount);
         require(sent, "Failed to send back remaining amount");
-        console.log(newOrder.itemList.length);
+        // console.log(newOrder.itemList.length);
         console.log(userFoodOrderMap[_userId][orderNum].itemList.length);
-        console.log("Order Num , ", userFoodOrderMap[_userId][orderNum].orderNum);
-                console.log("User ID , ", userFoodOrderMap[_userId][orderNum].userId);
+        console.log(
+            "Order Num , ",
+            userFoodOrderMap[_userId][orderNum].orderNum
+        );
+        console.log("User ID , ", userFoodOrderMap[_userId][orderNum].userId);
 
-        return newOrder;
+        return userFoodOrderMap[_userId][orderNum];
     }
 
     function getUserOrderInfo(
