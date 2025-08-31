@@ -62,7 +62,7 @@ contract OrderAccounting {
     function _processNewFoodOrder(
         uint256 _orderNum,
         FoodOrder memory _foodOrder
-    ) internal returns (uint256, FoodOrder memory) {
+    ) internal pure returns (uint256, FoodOrder memory) {
         // get Item Prices
         uint256 billAmt = 0;
         for (uint i = 0; i < _foodOrder.itemList.length; i++) {
