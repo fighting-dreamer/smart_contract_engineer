@@ -1,3 +1,6 @@
 [submodule "foundry-learning/Counter/lib/forge-std"]
 	path = foundry-learning/Counter/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "foundry-learning/HelloWorld/lib/forge-std"]
+	path = foundry-learning/HelloWorld/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
