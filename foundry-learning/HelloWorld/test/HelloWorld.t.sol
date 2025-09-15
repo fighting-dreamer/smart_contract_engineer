@@ -6,7 +6,7 @@ import {HelloWorld} from "../src/HelloWorld.sol";
 
 contract HelloWorldTest is Test {
     HelloWorld public hw;
-    string public testMessage= "test Message";
+    string public testMessage = "test Message";
 
     function setUp() public {
         hw = new HelloWorld();
@@ -16,6 +16,7 @@ contract HelloWorldTest is Test {
     function test_get() public view {
         assertEq(hw.get(), testMessage);
     }
+
     function test_setMessageWithOwnerSuccess() public {
         string memory someMessage = "someMessage";
         hw.setMessage(someMessage);
