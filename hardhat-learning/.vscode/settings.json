@@ -1,0 +1,4 @@
+{
+  "solidity.compileUsingRemoteVersion": "v0.8.26+commit.8c343997",
+  "solidity.enableLocalNodeCompiler": true
+}

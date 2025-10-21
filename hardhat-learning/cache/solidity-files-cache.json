@@ -1,0 +1,808 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/proxy-patterns/minimal-proxy/CloneFactory.sol": {
+      "lastModificationDate": 1758082774222,
+      "contentHash": "99817ba8f74c292265a9511dfa79f7bf",
+      "sourceName": "contracts/proxy-patterns/minimal-proxy/CloneFactory.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "MinimalProxy"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/proxy-patterns/minimal-proxy/CounterOne.sol": {
+      "lastModificationDate": 1758016457570,
+      "contentHash": "16d3747f0d765ccfa372a73fec63cced",
+      "sourceName": "contracts/proxy-patterns/minimal-proxy/CounterOne.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "CounterImplementation"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/proxy-patterns/minimal-proxy/MinimalProxyOne.sol": {
+      "lastModificationDate": 1758016135055,
+      "contentHash": "fb17b7e0f5a613008451e40b522c4890",
+      "sourceName": "contracts/proxy-patterns/minimal-proxy/MinimalProxyOne.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "MinimalProxyOne"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/001_hello_world.sol": {
+      "lastModificationDate": 1757926829845,
+      "contentHash": "605027efd64632d86d130eef4b2ac1ae",
+      "sourceName": "contracts/001_hello_world.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.8.26"
+      ],
+      "artifacts": [
+        "HelloWorld"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/002_first_app.sol": {
+      "lastModificationDate": 1757926829846,
+      "contentHash": "144cd44d04166f0188d14d5869b9bb1e",
+      "sourceName": "contracts/002_first_app.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "Counter"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/003_operations.sol": {
+      "lastModificationDate": 1757926829846,
+      "contentHash": "143c7180f3d4c8584360851e24047900",
+      "sourceName": "contracts/003_operations.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "hardhat/console.sol"
+      ],
+      "versionPragmas": [
+        "0.8.26"
+      ],
+      "artifacts": [
+        "Operations"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/node_modules/hardhat/console.sol": {
+      "lastModificationDate": 1758016548520,
+      "contentHash": "681c532e816169606d13a5fe8b475074",
+      "sourceName": "hardhat/console.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "console"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/008_using_structs.sol": {
+      "lastModificationDate": 1757926829849,
+      "contentHash": "d865dec50d9e7e1f11479304863f7d55",
+      "sourceName": "contracts/008_using_structs.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "hardhat/console.sol"
+      ],
+      "versionPragmas": [],
+      "artifacts": [
+        "OrderAccounting"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/004_enums.sol": {
+      "lastModificationDate": 1757926829847,
+      "contentHash": "53c4368611de081ed5683288ecdc80de",
+      "sourceName": "contracts/004_enums.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "hardhat/console.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "LearnEnums"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/004_enums_test.sol": {
+      "lastModificationDate": 1757926829847,
+      "contentHash": "b5b6373d09069e5ac4486d705c12c100",
+      "sourceName": "contracts/004_enums_test.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./004_enums.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "TestLearningEnums"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/005_userdefined_value_types.sol": {
+      "lastModificationDate": 1757926829848,
+      "contentHash": "3dc1b43c611c352fb7f02516f79c8575",
+      "sourceName": "contracts/005_userdefined_value_types.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "LibClock",
+        "LibClockBasic",
+        "UserDefinedValueTypesExamples"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/006_using_safe_math_internal.sol": {
+      "lastModificationDate": 1757926829848,
+      "contentHash": "e9dc9b0b63d5c00ee9a2145ec0cab431",
+      "sourceName": "contracts/006_using_safe_math_internal.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./library/my_safe_math.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "UsingSafeMathInternal"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/library/my_safe_math.sol": {
+      "lastModificationDate": 1757926829851,
+      "contentHash": "0df9628f96c1723e0826c51557fb78df",
+      "sourceName": "contracts/library/my_safe_math.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [],
+      "artifacts": [
+        "MySafeMath"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/007_using_safe_math_external.sol": {
+      "lastModificationDate": 1757926829849,
+      "contentHash": "0f645d572fc980f3a4ebd3fec434d712",
+      "sourceName": "contracts/007_using_safe_math_external.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./library/my_external_safe_math.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "UsingSafeMathExternal"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/library/my_external_safe_math.sol": {
+      "lastModificationDate": 1757926829850,
+      "contentHash": "3b3f6510077615808ae698c1d839c567",
+      "sourceName": "contracts/library/my_external_safe_math.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [],
+      "artifacts": [
+        "MyExternalSafeMath"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/Lock.sol": {
+      "lastModificationDate": 1757926829850,
+      "contentHash": "7b425b1a01db49f76c454d402c57aea3",
+      "sourceName": "contracts/Lock.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "Lock"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/inheritence/009_calling_parent_contracts.sol": {
+      "lastModificationDate": 1757926829850,
+      "contentHash": "0740ad31597481fde3e01ebbd0ce5e16",
+      "sourceName": "contracts/inheritence/009_calling_parent_contracts.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/proxy-patterns/eip1967_upgradable_proxy/BuggyProxy.sol": {
+      "lastModificationDate": 1758098589884,
+      "contentHash": "1e198e1209fd86a9f3b461230778dff2",
+      "sourceName": "contracts/proxy-patterns/eip1967_upgradable_proxy/BuggyProxy.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "BuggyProxy"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/proxy-patterns/eip1967_upgradable_proxy/SimpleProxy.sol": {
+      "lastModificationDate": 1758098589885,
+      "contentHash": "d8a813c7951d60521c71042d8ae4bbd4",
+      "sourceName": "contracts/proxy-patterns/eip1967_upgradable_proxy/SimpleProxy.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "SimpleProxy"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/proxy-patterns/eip1967_upgradable_proxy/implementation.sol": {
+      "lastModificationDate": 1758098589885,
+      "contentHash": "5a18cbc2ed8a12983bc55022f565a0e3",
+      "sourceName": "contracts/proxy-patterns/eip1967_upgradable_proxy/implementation.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "ImplementationEIP1967One"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/proxy-patterns/eip1967_upgradable_proxy/implementation_three.sol": {
+      "lastModificationDate": 1758100288303,
+      "contentHash": "9159f78e9e1ee5ae85696eb65d43915a",
+      "sourceName": "contracts/proxy-patterns/eip1967_upgradable_proxy/implementation_three.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "ImplementationEIP1967Three"
+      ]
+    },
+    "/home/nipun/Documents/prepration/defi/smart_contract_engineer/contracts/proxy-patterns/eip1967_upgradable_proxy/implementation_two.sol": {
+      "lastModificationDate": 1758098802838,
+      "contentHash": "f55d61a35e31acd15c3b0a5ed8d6e58c",
+      "sourceName": "contracts/proxy-patterns/eip1967_upgradable_proxy/implementation_two.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": [
+        "ImplementationEIP1967Two"
+      ]
+    }
+  }
+}

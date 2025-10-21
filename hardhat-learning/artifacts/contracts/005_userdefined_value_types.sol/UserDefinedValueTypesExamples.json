@@ -1,0 +1,31 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "UserDefinedValueTypesExamples",
+  "sourceName": "contracts/005_userdefined_value_types.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "example_no_uvdt",
+      "outputs": [
+        {
+          "internalType": "Clock",
+          "name": "",
+          "type": "uint128"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "example_uvdt",
+      "outputs": [],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x6080604052348015600f57600080fd5b50609b80601d6000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c8063645e9edf1460375780639848d8e6146063575b600080fd5b60014260401b176040516fffffffffffffffffffffffffffffffff909116815260200160405180910390f35b00fea2646970667358221220037593fe609495d892c8c4c37006061644de87208c92c7b726973a237b1eeca264736f6c634300081a0033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c8063645e9edf1460375780639848d8e6146063575b600080fd5b60014260401b176040516fffffffffffffffffffffffffffffffff909116815260200160405180910390f35b00fea2646970667358221220037593fe609495d892c8c4c37006061644de87208c92c7b726973a237b1eeca264736f6c634300081a0033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
