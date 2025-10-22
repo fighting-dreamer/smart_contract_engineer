@@ -1,13 +1,19 @@
-# Sample Hardhat Project
+## Development and Operational Flow
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+1. Write smart contract.
+2. Write script to Deploy it.
+3. Write relevant Tests and check them working successfully.
+3. Deploy contracts on local, sepolia and other L2 for cheaper deployment checking.
+4. document contracts and changes.
+5. publish reports and addresses.
 
-Try running some of the following tasks:
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.ts
-```
+## using typescript or javascript for them
+
+### Javascript :
+
+1. generate the ABI from the contract code.
+
+2. initialize the etherjs and use that to interact with contracts.
+
+3. 
