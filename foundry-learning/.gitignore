@@ -1,0 +1,23 @@
+# Foundry build and cache artifacts
+/cache/
+/out/
+
+# Forge dependencies installed via git submodules
+# The `lib` directory is where forge install places dependencies.
+/lib/
+# If you don't use `forge install` and manage dependencies manually or with another tool,
+# you may not need this line.
+
+# Anvil's broadcast folder, which contains transaction information
+# This folder is created by Anvil when using `forge script`.
+/broadcast/
+
+# Environment variables
+# This is a good practice for any project to avoid committing sensitive information.
+.env
+.env.*
+
+# OS-specific files
+.DS_Store
+.vscode/
+# Add any other IDE or OS-specific files here
