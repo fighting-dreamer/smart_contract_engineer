@@ -1,66 +1,11 @@
-## Foundry
+## Contract Deployment Method Comparison: CREATE vs. CREATE2
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+| Feature | `CREATE` (Standard Deployment) | `CREATE2` (Deterministic Deployment) |
+| :--- | :--- | :--- |
+| **Address Derivation** | Sender Address + **Nonce** (Transaction Count) | Deployer Address + **Salt** + **Bytecode Hash** |
+| **Key Input** | The deployer's **Nonce** is the critical factor. | The **Salt** is the critical factor. |
+| **Address Predictability** | **Non-deterministic.** The address changes with every transaction the sender makes. | **Deterministic.** The address is always the same, given the same inputs. |
+| **Does it use Salt?** | ❌ No. | ✅ Yes, a 32-byte custom value is required. |
 
-Foundry consists of:
-
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+💡 Quick Note on the Difference
+The key takeaway is that the Nonce is state-dependent (it changes), which is why CREATE is non-deterministic. The Salt is a fixed, user-chosen input, which is why CREATE2 is deterministic and allows for off-chain precomputation.
