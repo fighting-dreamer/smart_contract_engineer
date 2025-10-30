@@ -1,0 +1,24 @@
+# Dependency directories
+node_modules/
+lib/
+
+# Foundry build artifacts
+cache/
+out/
+broadcast/
+deployments/
+runs/
+
+# Reports
+coverage/
+coverage.json
+report/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# Foundry generated
+remappings.txt
